@@ -1,7 +1,9 @@
+import pygame.display
 from pygame import *
 import pyganim
 import blocks
 import monsters
+from popup_menu import ask_to_play_again
 from settings import MOVE_SPEED, MOVE_EXTRA_SPEED, WIDTH, HEIGHT, COLOR, JUMP_POWER, JUMP_EXTRA_POWER, GRAVITY, \
     ANIMATION_DELAY, ANIMATION_SUPER_SPEED_DELAY, ANIMATION_RIGHT, ANIMATION_LEFT, ANIMATION_JUMP_LEFT, \
     ANIMATION_JUMP_RIGHT, ANIMATION_JUMP, ANIMATION_STAY, SCREEN_START
@@ -141,6 +143,13 @@ class Player(sprite.Sprite):
                 elif isinstance(platform, blocks.Princess):
                     # WE WON!
                     self.winner = True
+                    # if self.winner:
+                    #     player_answer = ask_to_play_again(pygame.display.get_surface())
+                    #     if player_answer:
+                    #         self.winner = False
+                    #         self.die()
+                    #     else:
+                    #         raise SystemExit("QUIT")
                 else:
                     # If moving to the right
                     if x_val > 0:

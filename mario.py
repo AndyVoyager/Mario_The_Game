@@ -2,6 +2,7 @@ import pygame
 from player import *
 from blocks import *
 from monsters import *
+from popup_menu import ask_to_play_again
 from settings import WIN_WIDTH, WIN_HEIGHT, DISPLAY, BACKGROUND_COLOR, FILE_PATH, MUSIC_PATH, FPS
 
 
@@ -184,6 +185,23 @@ def main():
         timer.tick(FPS)
         # Update and display all changes on the screen
         pygame.display.update()
+
+    else:
+        answer = ask_to_play_again(pygame.display.get_surface())
+        if answer:
+            reset_game_state()
+            main()
+        else:
+            raise SystemExit("QUIT")
+
+
+def reset_game_state():
+    global level, platforms, entities, animated_entities, monsters
+    # level = []
+    platforms = []
+    entities = pygame.sprite.Group()
+    animated_entities = pygame.sprite.Group()
+    monsters = pygame.sprite.Group()
 
 
 level = []
